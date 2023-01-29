@@ -1,2 +1,37 @@
 <h1>Admin::Items#edit</h1>
 <p>Find me in app/views/admin/items/edit.html.erb</p>
+
+<h2>商品編集</h2>
+
+<%= form_with model: @item do |f| %>
+
+<<div>
+  <p>商品画像</p>
+    <%= f.file_field :item_image, placeholder:"ファイルを選択", accept:"image/*" %>
+</div>
+<div>
+  <p>商品名</p>
+    <%= f.text_field :name, placeholder:"商品名" %>
+</div>
+<div>
+  <p>商品説明</p>
+    <%= f.text_area :introduction, placeholder:"ここに説明文を記述します" %>
+</div>
+<!--<div>-->
+<!--  <p>ジャンル</p>-->
+    <%#= f.select :genre_id, placeholder:"選択してください" %>
+<!--</div>-->
+<div>
+  <p>販売価格</p>
+    <%= f.text_field :price, placeholder:"1000" %>円
+</div>
+<div>
+  <p>販売ステータス</p>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :"販売中" %>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :"販売停止中" %>
+</div>
+
+  <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
+<% end %>
