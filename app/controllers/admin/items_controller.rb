@@ -10,25 +10,35 @@ class Admin::ItemsController < ApplicationController
   def create
     @item_new = Item.new(item_params)
     @item_new.save
-    redirect_to new_admin_item_path
-
+    redirect_to admin_item_path(@item_new.id)
+    # else
+    #   @item_new = Item.new
+    #   render :new
+    # end
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item_show = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item_show = Item.find(params[:id])
   end
 
   def update
-    @item = item.find(params[:id])
-    if @item.update(item_params)
+    @item_show = Item.find(params[:id])
+    if @item_show.update(item_params)
       flash[:notice] = "You have updated book successfully."
       redirect_to admin_item_path
     else
       render :edit
     end
+  end
+
+
+  private
+
+  def item_params
+    params.require(:item).permit(:item_image, :name, :introduction, :price, :is_active, :create_at, :updated_at)
   end
 end

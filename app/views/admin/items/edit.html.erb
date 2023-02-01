@@ -3,11 +3,11 @@
 
 <h2>商品編集</h2>
 
-<%= form_with model: @item do |f| %>
+<%= form_with model: @item_show, url: admin_item_path do |f| %>
 
-<<div>
+<div>
   <p>商品画像</p>
-    <%= f.file_field :item_image, placeholder:"ファイルを選択", accept:"image/*" %>
+    <%= f.file_field :item_image, placeholder:"ファイルを選択" %>
 </div>
 <div>
   <p>商品名</p>

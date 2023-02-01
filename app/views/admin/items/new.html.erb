@@ -3,10 +3,19 @@
 
 <h2>商品新規登録</h2>
 
-<%= form_with model: Item.new do |f| %>
+<% if @item_new.errors.any? %>
+  <%= @item_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @item_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: Item.new, url: admin_items_path do |f| %>
 <div>
   <p>商品画像</p>
-    <%= f.file_field :item_image, placeholder:"ファイルを選択", accept:"image/*" %>
+    <%= f.file_field :item_image, placeholder:"ファイルを選択" %>
 </div>
 <div>
   <p>商品名</p>
@@ -32,5 +41,5 @@
     <%= f.label :"販売停止中" %>
 </div>
 
-  <%= f.submit '新規登録', class: "btn btn-sm btn-success" %>
+  <%= f.submit '新規登録' %>
 <% end %>

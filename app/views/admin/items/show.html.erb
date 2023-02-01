@@ -3,11 +3,10 @@
 
 <h2>商品詳細</h2>
 <div>
-  <%= image_tag @item.item_image(80,80) %>
-  <p>商品名：<%= @item.name %></p>
-  <p>商品説明：<%= @item.introduction %></p>
-  <p>ジャンル：<%#= image_tag @post_image.user.get_profile_image(100,100) %></p>
-  <p>税抜価格：<%= @item.praice %></p>
-  <p>販売ステータス：<%= @item.status %></p>
-  <%= link_to "編集する", edit_admin_item(@item)  %>
+  <p>商品名：<%= @item_show.name %></p>
+  <p>商品説明：<%= @item_show.introduction %></p>
+  <!--<p>ジャンル：<%#= image_tag @post_image.user.get_profile_image(100,100) %></p>-->
+  <p>税抜価格：<%= @item_show.price %></p>
+  <p>販売ステータス：<%= @item_show.is_active %></p>
+  <%= link_to "編集する", edit_admin_item_path(@item_show)  %>
 </div>
