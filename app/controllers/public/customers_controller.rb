@@ -1,25 +1,26 @@
-class Admin::CustomersController < ApplicationController
-  def index
-    @customers_index = Customer.all
-  end
-
+class Public::CustomersController < ApplicationController
   def show
-    @customer_show = Customer.find(params[:id])
+    @customer_show = Customer.find(current_customer.id)
   end
 
   def edit
-    @customer_show = Customer.find(params[:id])
+    @customer_show = Customer.find(current_customer.id)
   end
 
   def update
-    @customer_show = Customer.find(params[:id])
+    @customer_show = Customer.find(current_customer.id)
     if @customer_show.update(customer_params)
       flash[:notice] = "You have updated book successfully."
-      redirect_to admin_customer_path
+      redirect_to my_page_path
     else
       render :edit
     end
   end
+
+  def unsubscribe
+    @customer_show = Customer.find(current_customer.id)
+  end
+
 
   private
 

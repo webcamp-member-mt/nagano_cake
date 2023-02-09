@@ -1,0 +1,23 @@
+<h1>Public::Items#index</h1>
+<p>Find me in app/views/public/items/index.html.erb</p>
+
+<h2>商品一覧</h2>
+<%#= items.where('created_at > ?', Date.today).count, url: items_path %>
+<%# end %>
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <% @items_index.each do |item| %>
+    <td>
+      <%#= image_tag item.get_item_image %>
+    </td>
+    <td>
+      <%= item.name %>
+    </td>
+    <td>
+      ¥<%= item.price %>
+    </td>
+    <% end %>
+  </tbody>
+</table>
