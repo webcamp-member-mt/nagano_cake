@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
     patch 'customers/information' => "customers#update"
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    destroy_all 'cart_items/destroy_all'
 
   end
 

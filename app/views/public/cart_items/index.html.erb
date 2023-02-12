@@ -1,0 +1,36 @@
+<% if @cart_item_new.errors.any? %>
+  <%= @cart_item_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @cart_item_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>ショッピングカート</h2>
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <% @cart_items_index.each do |cart_item| %>
+    <td>
+      <%#= image_tag item.get_item_image %>
+    </td>
+    <td>
+      <%= cart_item.item.name %>
+    </td>
+    <td>
+      <%= cart_item.item.price %>
+    </td>
+    <td>
+      <%= cart_item.amount %>
+    </td>
+    <td>
+      <%#= cart_item.amount %>
+    </td>
+    <td>
+      <%= link_to "削除する", cart_item_path(@book), method: :delete, class: "btn btn-sm btn-danger"  %>
+    </td>
+    <% end %>
+  </tbody>
+</table>
