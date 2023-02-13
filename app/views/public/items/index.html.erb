@@ -1,6 +1,3 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
-
 <h2>商品一覧</h2>
 <%#= items.where('created_at > ?', Date.today).count, url: items_path %>
 <%# end %>
@@ -13,10 +10,12 @@
       <%#= image_tag item.get_item_image %>
     </td>
     <td>
-      <%= item.name %>
+      <%= link_to item_path(item) do %>
+        <%= item.name %>
+      <% end %>
     </td>
     <td>
-      ¥<%= item.price %>
+      ¥<%= item.add_tax_price.to_s(:delimited) %>
     </td>
     <% end %>
   </tbody>

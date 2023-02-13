@@ -1,11 +1,9 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
-
 <p>商品名：<%= @item_show.name %></p>
 <p>商品説明：<%= @item_show.introduction %></p>
-<p>税抜価格：<%= @item_show.price %></p>
+<p>税込価格：￥<%= @item_show.add_tax_price.to_s(:delimited) %>(税込)</p>
 
-<%= form_with model: CartItem.new do |f| %>
+<%= form_with model: @cart_item_new, url: cart_items_path do |f| %>
+  <%= f.hidden_field :item_id, :value => @item_show.id %>
   <%= f.select :amount, *[1..10] %>
-  <%= f.submit 'カートに入れる' %>
+  <%= f.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
 <% end %>

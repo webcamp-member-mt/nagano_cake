@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'
     patch 'customers/withdraw'
     resources :cart_items, only: [:index, :create, :update, :destroy]
-    destroy_all 'cart_items/destroy_all'
+    delete 'cart_items/destroy_all'
 
   end
 
