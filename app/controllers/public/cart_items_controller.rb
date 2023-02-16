@@ -1,13 +1,14 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items_index = CartItem.all
+    @total = 0
   end
 
   def update
     @cart_item_show = CartItem.find(params[:id])
     if @cart_item_show.update(cart_item_params)
       flash[:notice] = "You have updated book successfully."
-      redirect_to items_path
+      redirect_to cart_items_path
     else
       redirect_to root_path
       # render :index
@@ -33,9 +34,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    @cart_items_index = CartItem.all
-    @cart_item_index.destroy
-    redirect_to cart_items_path
+    current_customer.cart_items.destroy_all
+    redirect_to root_path
   end
 
   private

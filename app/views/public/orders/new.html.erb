@@ -1,0 +1,28 @@
+<h2>注文情報入力</h2>
+
+<%= form_with model: @order_new, url: orders_path do |f| %>
+<div>
+  <p>支払方法</p>
+    <%= f.radio_button :payment_method, 0 %>
+    <%= f.label :"クレジットカード" %>
+    <%= f.radio_button :payment_method, 1 %>
+    <%= f.label :"銀行振込" %>
+</div>
+<div>
+  <p>ご自身の住所</p>
+
+    <%#= f.text_field :name, placeholder:"商品名" %>
+</div>
+<div>
+  <p>新しい住所</p>
+    <%= f.label :"郵便番号（ハイフンなし）" %>
+    <%= f.text_field :postal_code, placeholder:"0000000" %>
+    <%= f.label :"住所" %>
+    <%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0" %>
+    <%= f.label :"宛名" %>
+    <%= f.text_field :name, placeholder:"令和道子" %>
+</div>
+
+
+  <%= f.submit '確認画面へ進む' %>
+<% end %>
