@@ -3,16 +3,17 @@
 <%= form_with model: @order_new, url: orders_path do |f| %>
 <div>
   <p>支払方法</p>
-    <%= f.radio_button :payment_method, 0 %>
-    <%= f.label :"クレジットカード" %>
-    <%= f.radio_button :payment_method, 1 %>
-    <%= f.label :"銀行振込" %>
+    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+    <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+
+    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+    <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
 </div>
-<div>
-  <p>ご自身の住所</p>
+<!--<div>-->
+<!--  <p>ご自身の住所</p>-->
 
     <%#= f.text_field :name, placeholder:"商品名" %>
-</div>
+<!--</div>-->
 <div>
   <p>新しい住所</p>
     <%= f.label :"郵便番号（ハイフンなし）" %>
@@ -23,6 +24,7 @@
     <%= f.text_field :name, placeholder:"令和道子" %>
 </div>
 
+    <%= f.hidden_field :shipping_cost, :value => 800 %>
 
-  <%= f.submit '確認画面へ進む' %>
+    <%= f.submit '確認画面へ進む' %>
 <% end %>

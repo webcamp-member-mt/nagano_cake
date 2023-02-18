@@ -3,6 +3,8 @@ class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
   # belongs_to :genre
+  
+  
 
   def get_item_image
     unless item_image.attached?
@@ -13,6 +15,6 @@ class Item < ApplicationRecord
   end
 
   def add_tax_price
-    (price * 1.10).round
+    (price * 1.10).floor
   end
 end
