@@ -10,7 +10,7 @@
     <td></td>
   </thead>
   <tbody>
-  <% @cart_items_index.each do |cart_item| %>
+  <% @cart_items.each do |cart_item| %>
     <td>
       <%= image_tag cart_item.item.get_item_image %>
 
@@ -38,3 +38,5 @@
 </table>
 <%= link_to "買い物を続ける", root_path,  class: "btn btn-sm btn-primary"  %>
 <td>合計金額<%= total.to_s(:delimited) %></td>
+
+<%= link_to "情報入力へ進む", new_order_path,  class: "btn btn-sm btn-success"  %>

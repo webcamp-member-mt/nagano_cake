@@ -1,2 +1,51 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h2>注文履歴</h2>
+
+<h3>注文情報</h3>
+<p>注文日</p>
+<%= @order.created_at.strftime("%Y/%m/%d") %>
+
+<p>配送先</p>
+<%= @order.postal_code %><br>
+<%= @order.address %></br>
+<%= @order.name %>
+
+<p>支払方法</p>
+<%= @order.payment_method_i18n %>
+
+<p>ステータス</p>
+<%= @order.status_i18n %>
+
+
+<h3>請求情報</h3>
+<p>商品合計</p>
+<%#= @order. %>
+<p>配送料</p>
+<%= @order.shipping_cost %>
+<p>ご請求額</p>
+<%= @order.total_payment.to_s(:delimited) %>
+
+<h3>注文内容</h3>
+<table>
+  <thead>
+    <td>商品</td>
+    <td>単価(税込)</td>
+    <td>数量</td>
+    <td>小計</td>
+  </thead>
+  <tbody>
+  <% @order_details.each do |order_detail| %>
+    <td>
+      <%= order_detail.item.name %>
+    </td>
+    <td>
+      <%= order_detail.add_tax_price.to_s(:delimited) %>
+    </td>
+    <td>
+      <%= order_detail.amount %>
+    </td>
+    <td>
+      <%= order_detail.line_total.to_s(:delimited) %>
+    </td>
+  </tbody>
+  <% end %>
+</table>

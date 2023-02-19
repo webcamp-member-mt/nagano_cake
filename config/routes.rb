@@ -19,9 +19,12 @@ Rails.application.routes.draw do
     delete 'cart_items/:id' => "cart_items#destroy"
 
 
-    resources :orders, only: [:new, :create, :index, :show]
-    get 'orders/comfirm'
-    get 'orders/complete'
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post :comfirm
+        get :complete
+      end
+    end
 
   end
 
@@ -29,7 +32,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
 
   end
 

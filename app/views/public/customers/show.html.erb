@@ -1,9 +1,10 @@
 <h2>マイページ</h2>
-    <%= link_to "編集する", customers_information_edit_path  %>
-  <p>氏名：<%= current_customer.last_name %><%= @customer_show.first_name %></p>
+    <%= link_to "編集する", customers_information_edit_path, class: "btn btn-sm btn-success"  %>
+  <p>氏名：<%= @customer_show.last_name %><%= @customer_show.first_name %></p>
   <p>フリガナ：<%= @customer_show.last_name_kana %><%= @customer_show.first_name_kana %></p>
   <p>郵便番号：<%= @customer_show.postal_code %></p>
   <p>住所：<%= @customer_show.address%></p>
   <p>電話番号：<%= @customer_show.telephone_number %></p>
   <p>メールアドレス：<%= @customer_show.email %></p>
 
+<%= link_to "一覧を見る", orders_path, class: "btn btn-sm btn-primary"  %>

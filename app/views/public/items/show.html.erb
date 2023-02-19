@@ -1,3 +1,4 @@
+<%= image_tag @item_show.get_item_image %>
 <p>商品名：<%= @item_show.name %></p>
 <p>商品説明：<%= @item_show.introduction %></p>
 <p>税込価格：￥<%= @item_show.add_tax_price.to_s(:delimited) %>(税込)</p>

@@ -5,18 +5,18 @@
   <thead>
   </thead>
   <tbody>
-    <% @items_index.each do |item| %>
+  <% @items.each do |item| %>
     <td>
-      <%#= image_tag item.get_item_image %>
+    <%= image_tag item.get_item_image %>
     </td>
     <td>
-      <%= link_to item_path(item) do %>
-        <%= item.name %>
-      <% end %>
-    </td>
-    <td>
-      ¥<%= item.add_tax_price.to_s(:delimited) %>
-    </td>
+    <%= link_to item_path(item) do %>
+      <%= item.name %>
     <% end %>
+    </td>
+    <td>
+    ¥<%= item.add_tax_price.to_s(:delimited) %>
+    </td>
   </tbody>
+  <% end %>
 </table>
