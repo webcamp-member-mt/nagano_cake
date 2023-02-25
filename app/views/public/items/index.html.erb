@@ -1,22 +1,21 @@
-<h2>商品一覧</h2>
-<%#= items.where('created_at > ?', Date.today).count, url: items_path %>
-<%# end %>
-<table>
-  <thead>
-  </thead>
-  <tbody>
-  <% @items.each do |item| %>
-    <td>
-    <%= image_tag item.get_item_image %>
-    </td>
-    <td>
-    <%= link_to item_path(item) do %>
-      <%= item.name %>
-    <% end %>
-    </td>
-    <td>
-    ¥<%= item.add_tax_price.to_s(:delimited) %>
-    </td>
-  </tbody>
-  <% end %>
-</table>
+<div class="container">
+  <h3>商品一覧(<%= @items_count %>件)</h3>
+  <div class="row">
+      <% @items.each do |item| %>
+      <div class="my-5 col-md-3">
+          <div class="d-flex justify-content-center">
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_item_image %>
+            <% end %>
+          </div>
+          <div class="d-flex justify-content-center">
+          <%= item.name %>
+          </div>
+          <div class="d-flex justify-content-center">
+           ¥<%= item.add_tax_price.to_s(:delimited) %>
+          </div>
+      </div>
+      <% end %>
+  </div>
+  <%= paginate @items %>
+</div>

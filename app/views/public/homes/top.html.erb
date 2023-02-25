@@ -1,25 +1,37 @@
-<P>
-  ようこそ、ながのCAKEへ！<br>
-  このサイトは、ケーキ販売のECサイトとなります。<br>
-  会員でない方も商品の観覧はできますが、<br>
-  購入には会員登録が必要になります。
-</P>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
 
-<h2>新着商品</h2>
-<table>
-  <thead>
-  </thead>
-  <tbody>
-    <% @items_index.each do |item| %>
-    <td>
-      <%= image_tag item.get_item_image %>
-    </td>
-    <td>
-      <%= item.name %>
-    </td>
-    <td>
-      <%= item.price %>
-    </td>
-    <% end %>
-  </tbody>
-</table>
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトとなります。<br>
+          会員でない方も商品の観覧はできますが、<br>
+          購入には会員登録が必要になります。
+      <!--</div>-->
+    </div>
+  </div>
+
+
+  <h4>新着商品</h4>
+
+
+        <div class="row">
+          <% @items.each do |item| %>
+          <div class="my-4 col-md-3">
+              <div class="d-flex justify-content-center">
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.get_item_image %>
+                <% end %>
+              </div>
+              <div class="d-flex justify-content-center">
+              <%= item.name %>
+              </div>
+              <div class="d-flex justify-content-center">
+               ¥<%= item.add_tax_price.to_s(:delimited) %>
+              </div>
+          </div>
+          <% end %>
+      </div>
+       <%= paginate @items %>
+
+
+</div>

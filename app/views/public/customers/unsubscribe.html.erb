@@ -1,22 +1,28 @@
-本当に退会しますか？
-退会すると、会員登録情報や
-これまでの購入履歴が閲覧できなくなります。
-退会するには「退会する」をクリックしてください。
+<div class="container">
+  <div class="mt-5 row justify-content-center">
+    <div class="col-auto">
+      <p class="text-center">
+      　<strong>本当に退会しますか？</strong><br>
+      　<br>
+        退会すると、会員登録情報や<br>
+        これまでの購入履歴が閲覧できなくなります。<br>
+        退会するには「退会する」をクリックしてください。<br>
+      </p>
+    </div>
+  </div>
+  <div class="row  justify-content-around">
+    <%= form_with model: @customer_show, url: customers_withdraw_path do |f| %>
+    <div class="col-auto">
+      <%= f.hidden_field :is_deleted, :value => true %>
+      <%= f.submit '退会する', class: "btn btn btn-danger"  %>
+    </div>
+     <% end %>
+     <%= form_with model: @customer_show, url: customers_withdraw_path do |f| %>
+    <div class="col-auto">
+      <%= f.hidden_field :is_deleted, :value => false %>
+      <%= f.submit '退会しない', class: "btn btn btn-primary"  %>
+    </div>
+     <% end %>
+  </div>
 
-<div>
-<%= link_to my_page_path do %>退会しない<% end %>
-</div>
-
-<div>
-<%= form_with model: @customer_show, url: customers_withdraw_path do |f| %>
-  <%= f.hidden_field :is_deleted, :value => true %>
-  <%= f.submit '退会する'  %>
-<% end %>
-</div>
-
-<div>
-<%= form_with model: @customer_show, url: customers_withdraw_path do |f| %>
-  <%= f.hidden_field :is_deleted, :value => false %>
-  <%= f.submit '退会しない'  %>
-<% end %>
 </div>

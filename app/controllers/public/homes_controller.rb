@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @items_index = Item.all
+    @items = Item.page(params[:page]).per(4)
   end
 
   def about
