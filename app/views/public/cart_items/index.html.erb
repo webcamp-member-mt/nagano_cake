@@ -8,13 +8,13 @@
       <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger"  %>
     </div>
   </div>
-  <table class="table table-bordered p-10">
+  <table class="table table-bordered">
     <thead>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th></th>
+      <th scope="col", style="width:30%">商品名</th>
+      <th scope="col", style="width:20%">単価(税込)</th>
+      <th scope="col", style="width:15%">数量</th>
+      <th scope="col", style="width:20%">小計</th>
+      <th scope="col", style="width:15%"></th>
     </thead>
     <tbody>
     <% @cart_items.each do |cart_item| %>
@@ -61,6 +61,8 @@
   </div>
 </div>
 <div class="m-10 text-center">
-  <%= link_to "情報入力へ進む", new_order_path,  class: "btn btn-sm btn-success"  %>
+  <% if @cart_items.any? %>
+    <%= link_to "情報入力へ進む", new_order_path,  class: "btn btn-sm btn-success"  %>
+  <% end %>
 </div>
 

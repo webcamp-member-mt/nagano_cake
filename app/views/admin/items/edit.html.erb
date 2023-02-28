@@ -1,34 +1,67 @@
-<h2>商品編集</h2>
+<div class="container">
+  <% if @item_show.errors.any? %>
+    <%= @item_show.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @item_show.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="row">
+    <h4 class="p-3">商品編集</h4>
+  </div>
 
-<%= form_with model: @item_show, url: admin_item_path do |f| %>
+  <div class="mb-10">
+  <%= form_with model: @item_show, url: admin_item_path do |f| %>
 
-<div>
-  <p>商品画像</p>
-    <%= f.file_field :item_image, placeholder:"ファイルを選択" %>
-</div>
-<div>
-  <p>商品名</p>
-    <%= f.text_field :name, placeholder:"商品名" %>
-</div>
-<div>
-  <p>商品説明</p>
-    <%= f.text_area :introduction, placeholder:"ここに説明文を記述します" %>
-</div>
-<!--<div>-->
-<!--  <p>ジャンル</p>-->
-    <%#= f.select :genre_id, placeholder:"選択してください" %>
-<!--</div>-->
-<div>
-  <p>販売価格</p>
-    <%= f.text_field :price, placeholder:"1000" %>円
-</div>
-<div>
-  <p>販売ステータス</p>
-    <%= f.radio_button :is_active, true %>
-    <%= f.label :"販売中" %>
-    <%= f.radio_button :is_active, false %>
-    <%= f.label :"販売停止中" %>
+    <div class="form-group row">
+      <%= f.label "商品画像", class: "col-md-2 offset-md-2 col-form-label" %>
+      <div class="col-md-6">
+        <%= f.file_field :item_image, placeholder:"ファイルを選択"  %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label "商品名", class: "col-md-2 offset-md-2 col-form-label" %>
+      <div class="col-md-5">
+        <%= f.text_field :name, placeholder:"商品名",  class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label "商品説明", class: "col-md-2 offset-md-2 col-form-label" %>
+      <div class="col-md-5">
+        <%= f.text_area :introduction, placeholder:"ここに説明文を記述します",  class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label "販売価格", class: "col-md-2 offset-md-2 col-form-label" %>
+      <div class="col-md-5 pr-0">
+        <%= f.text_field :price, placeholder:"1000",  class: "form-control" %>
+      </div>
+      <div class="col-md-1 pl-0">
+        円
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label "販売ステータス", class: "col-md-2 offset-md-2 col-form-label" %>
+      <div class="col-md-2">
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :"販売中" %>
+      </div>
+      <div class="col-md-2">
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :"販売停止中" %>
+      </div>
+    </div>
+    <div class="row  justify-content-center">
+      <div class="col-auto ">
+        <%= f.submit "変更を保存", class: "btn btn btn-success px-5 py-2" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
 
-  <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
-<% end %>

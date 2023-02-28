@@ -46,6 +46,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_detail
+    @total = @order.total_payment-=@order.shipping_cost
   end
 
 

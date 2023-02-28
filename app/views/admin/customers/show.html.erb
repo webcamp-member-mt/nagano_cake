@@ -1,16 +1,87 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="py-6 row">
+    <h4 class="p-3"><%= @customer_show.last_name %><%= @customer_show.first_name %>さんの会員詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-5 align-self-center">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td scope="row", style="width:40%">
+              会員ID
+            </td>
+            <td>
+              <%= @customer_show.id %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              氏名
+            </td>
+            <td>
+              <%= @customer_show.last_name %><%= @customer_show.first_name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+             フリガナ
+            </td>
+            <td>
+              <%= @customer_show.last_name_kana %><%= @customer_show.first_name_kana %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              郵便番号
+            </td>
+            <td>
+             <%= @customer_show.postal_code %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              住所
+            </td>
+            <td>
+              <%= @customer_show.address%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              電話番号
+            </td>
+            <td>
+              <%= @customer_show.telephone_number %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              メールアドレス
+            </td>
+            <td>
+             <%= @customer_show.email %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              会員ステータス
+            </td>
+            <% if @customer_show.is_deleted == true %>
+              <th class="text-muted">退会</th>
+            <% else %>
+              <th class="text-success">有効</th>
+            <% end %>
+          </tr>
 
-<h2><%= @customer_show.last_name %><%= @customer_show.first_name %>さんの会員詳細</h2>
-<div>
-
-  <p>会員ID：<%= @customer_show.id %></p>
-  <p>氏名：<%= @customer_show.last_name %><%= @customer_show.first_name %></p>
-  <p>フリガナ：<%= @customer_show.last_name_kana %><%= @customer_show.first_name_kana %></p>
-  <p>郵便番号：<%= @customer_show.postal_code %></p>
-  <p>住所：<%= @customer_show.address%></p>
-  <p>電話番号：<%= @customer_show.telephone_number %></p>
-  <p>メールアドレス：<%= @customer_show.email %></p>
-  <p>会員ステータス：<%= @customer_show.is_deleted %></p>
-  <%= link_to "編集する", edit_admin_customer_path(@customer_show)  %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row  justify-content-center">
+    <div class="col-auto ">
+      <%= link_to "編集する", edit_admin_customer_path(@customer_show), class: "btn btn btn-success px-5 py-2"  %>
+    </div>
+  </div>
 </div>
+
+

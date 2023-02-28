@@ -1,21 +1,21 @@
 
-  <div class="container">
-    <div class="p-10 row justify-content-center p-10">
-      <div class="col-md-4 align-self-center">
-        <%= image_tag @item_show.get_item_image %>
-      </div>
-      <div class="col-md-4 align-self-center">
-          <p><strong>商品名<%= @item_show.name %> </strong></p>
-          <p>商品説明<%= @item_show.introduction %></p>
-          <p>税込価格￥<%= @item_show.add_tax_price.to_s(:delimited) %>(税込)</p>
+<div class="container">
+  <div class="py-6 row justify-content-center">
+    <div class="col-md-4 align-self-center">
+      <%= image_tag @item_show.get_item_image %>
+    </div>
+    <div class="col-md-4 align-self-center">
+        <h4><strong><%= @item_show.name %> </strong></h4>
+        <p><%= @item_show.introduction %></p>
+        <p><strong>￥<%= @item_show.add_tax_price.to_s(:delimited) %></strong><small>(税込)</small></p>
 
-          <%= form_with model: @cart_item_new, url: cart_items_path do |f| %>
-            <%= f.hidden_field :item_id, :value => @item_show.id %>
-            <%= f.select :amount, *[1..10] %>
-            <%= f.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
-          <% end %>
-      </div>
+        <%= form_with model: @cart_item_new, url: cart_items_path do |f| %>
+          <%= f.hidden_field :item_id, :value => @item_show.id %>
+          <%= f.select :amount, *[1..10] %>
+          <%= f.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
+        <% end %>
     </div>
   </div>
+</div>
 
 
