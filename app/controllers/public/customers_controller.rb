@@ -26,7 +26,8 @@ class Public::CustomersController < ApplicationController
     @customer_show = Customer.find(current_customer.id)
     if @customer_show.update(customer_deleted_params)
       flash[:notice] = "You have updated book successfully."
-      redirect_to my_page_path
+      reset_session
+      redirect_to root_path
     else
       render :edit
     end
