@@ -14,7 +14,7 @@ class Admin::OrdersController < ApplicationController
     if @order.update(order_params)
       @order_details.update_all(status: 1) if @order.status == "payment_confirmation"
       flash[:notice] = "You have updated book successfully."
-      redirect_to admin_root_path
+      redirect_to admin_order_path(@order)
     else
     render :show
     end
