@@ -11,7 +11,7 @@
               購入者
             </td>
             <td>
-              <%= @customer.last_name %><%= @customer.first_name %>
+              <%= @order.customer.last_name %><%= @order.customer.first_name %>
             </td>
           </tr>
           <tr>
@@ -43,12 +43,12 @@
             <td>
               注文ステータス
             </td>
-            <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
             <td>
-              <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enum.order.status.#{k}"), k] } %>
+            <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+              <%= f.select :status, Order.statuses_i18n.invert %>
               <%= f.submit '更新', class: "btn btn-sm btn-success" %>
-            </td>
             <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -83,13 +83,13 @@
               <%= order_detail.line_total.to_s(:delimited)  %>
               <% total += order_detail.line_total %>
             </td>
-            <%= form_with model: order_detail, url:  admin_order_detail_path, method: :patch do |f| %>
             <td>
-              <%= f.select :status, OrderDetail.statuses.keys.map { |k| [t("enum.order_detail.status.#{k}"), k] } %>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+              <%= f.hidden_field :order_id, :value => order_detail.order_id %>
+              <%= f.select :status, OrderDetail.statuses_i18n.invert %>
               <%= f.submit '更新', class: "btn btn-sm btn-success" %>
             <% end %>
             </td>
-
           <% end %>
           </tr>
         </tbody>

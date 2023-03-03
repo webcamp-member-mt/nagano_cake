@@ -25,7 +25,7 @@
             <%= order.customer.first_name %>
           </td>
           <td scope="row">
-            <%#= order.status_i18n %>
+            <%= order.order_detail.sum(:amount) %>
           </td>
           <td scope="row">
             <%= order.status_i18n %>
